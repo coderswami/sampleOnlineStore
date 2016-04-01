@@ -10,33 +10,19 @@
 		.controller('CatalogDetailController', CatalogDetailController);
 
 	// add CatalogDetailController dependencies to inject
-	CatalogDetailController.$inject = ['$state', 'product'];
+	CatalogDetailController.$inject = ['$state', 'product', '$cookies', 'Order', '$mdDialog'];
 
 	/**
 	 * CatalogDetailController constructor
 	 */
-	function CatalogDetailController($state, product) {
+	function CatalogDetailController($state, product, $cookies, Order, $mdDialog) {
 		var vm = this;
 
 		// the current catalog to display
 		vm.product = product;
-		// switch to the edit state
-		//vm.edit = edit;
-		// switch to the parent state
-		vm.goBack = goBack
 
-		/**
-		 * Open the edit state with the current catalog
-		 *
-		 */
-		// function edit() {
-		// 	$state.go('^.edit', {'id': vm.product.id});
-		// }
+		vm.goBack = goBack;
 
-		/**
-		 * Return to the parent state
-		 *
-		 */
 		function goBack() {
 			$state.go('^');
 		}

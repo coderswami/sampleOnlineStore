@@ -36,63 +36,13 @@
 
 		vm.sidenavId = 'mainMenu';
 
-		/**
-		 * @ngdoc function
-		 * @name logout
-		 * @methodOf sampleOnlineStoreApp.controller:AppController
-		 * @description
-		 * Logout the current user
-		 */
-		//vm.logout = Auth.logout;
-
-		/**
-		 * @ngdoc function
-		 * @name isLoggedIn
-		 * @methodOf sampleOnlineStoreApp.controller:AppController
-		 * @description
-		 * See {@link components/auth.service:Auth#isLoggedIn isLoggedIn} of the Auth service
-		 */
-		//vm.isLoggedIn = Auth.isLoggedIn;
-
-		/**
-		 * @ngdoc function
-		 * @name closeMainMenu
-		 * @methodOf sampleOnlineStoreApp.controller:AppController
-		 * @description
-		 * Close the main menu sidenav component
-		 * @returns {Promise} The promise from mdSidenav
-		 */
 		vm.closeMainMenu = closeMainMenu;
-
-		/**
-		 * @ngdoc function
-		 * @name openMainMenu
-		 * @methodOf sampleOnlineStoreApp.controller:AppController
-		 * @description
-		 * Open the main menu sidenav component
-		 * @returns {Promise} The promise from mdSidenav
-		 */
 		vm.openMainMenu = openMainMenu;
 
-		/**
-		 * @ngdoc function
-		 * @name currentUser
-		 * @methodOf sampleOnlineStoreApp.controller:AppController
-		 * @description
-		 * See {@link components/auth.service:Auth#getCurrentUser getCurrentUser} of the Auth service
-		 */
-		//vm.currentUser = Auth.getCurrentUser();
-
-		/**
-		 * Close the main menu sidenav component
-		 */
 		function closeMainMenu() {
 			return $mdSidenav(vm.sidenavId).close();
 		}
 
-		/**
-		 * Open the main menu sidenav component
-		 */
 		function openMainMenu() {
 			return $mdSidenav(vm.sidenavId).open();
 		}

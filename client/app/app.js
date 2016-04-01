@@ -20,6 +20,7 @@
 			'ngMaterial',
 			'ui.router',
 			'sampleOnlineStoreApp.auth.user',
+			'sampleOnlineStoreApp.listImage',
 			'sampleOnlineStoreApp.lodash',
 			'sampleOnlineStoreApp.mainMenu',
 			'sampleOnlineStoreApp.main'

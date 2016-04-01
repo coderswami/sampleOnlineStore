@@ -37,14 +37,22 @@
 		// The catalog state configuration
 		var catalogState = {
 			name: 'catalog',
-			url: '/catalog',
+			parent: 'main',
+			url: 'catalog',
 			abstract: true,
-			templateUrl: 'app/catalog/catalog.html',
-			controller: 'CatalogController',
-			controllerAs: 'index'
+			views: {
+				'@main': {
+					templateUrl: 'app/catalog/catalog.html',
+					controller: 'CatalogController',
+					controllerAs: 'index'
+				}
+			}
+			// templateUrl: 'app/catalog/catalog.html',
+			// controller: 'CatalogController',
+			// controllerAs: 'index'
 		};
 
-		$urlRouterProvider.when('/catalog', '/catalog/');
+		$urlRouterProvider.when('catalog', 'catalog/');
 		$stateProvider.state(catalogState);
 	}
 

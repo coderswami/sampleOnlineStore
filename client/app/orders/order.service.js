@@ -22,15 +22,11 @@
 	function Order($resource) {
 		// factory members
 		var apiURL = '/api/orders';
-		
+
 		var methods = {
 			getCart: {
 				method: 'GET',
-				params: {'id': 'type', 'controller': 'cart'},
-				transformResponse: function (data) {
-					data = angular.fromJson(data);
-					return data;
-				}
+				params: {'id': 'type', 'controller': 'cart'}
 			},
 			createCart: {
 				method: 'POST',

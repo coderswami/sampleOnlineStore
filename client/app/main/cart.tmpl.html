@@ -1,0 +1,53 @@
+<md-dialog aria-label="Cart" ng-cloak>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Shopping Cart</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="cancel()">
+					<md-icon md-svg-src="navigation:ic_close_24px" aria-label="Close dialog"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<md-content>
+			<md-list flex>
+				<md-list-item class="md-3-line" ng-repeat="item in cart.items" ng-click="null">
+					<img ng-src="{{item.product.imageUrl}}?{{$index}}" class="md-avatar" alt="{{item.product.name}}" />
+					<div class="md-list-item-text" layout="column">
+						<h3>{{ item.product.name }}</h3>
+						<h4>{{ item.product.description }}</h4>
+						<p>{{ item.product.status }}</p>
+					</div>
+				</md-list-item>
+				</md-list>
+			<!--<div class="md-dialog-content">-->
+
+				<!--<md-list layout="column">-->
+					<!--<md-item ng-repeat="item in cart.items">-->
+
+						<!--<md-item-content>-->
+
+							<!--<div class="md-tile-left">-->
+								<!--<list-image string="{{item.product.name}}"></list-image>-->
+							<!--</div>-->
+
+							<!--<div class="md-tile-content" flex="66">-->
+								<!--<h3>{{item.product.name}}</h3>-->
+								<!--<p ng-show="item.product.description">{{item.product.description}}</p>-->
+							<!--</div>-->
+
+						<!--</md-item-content>-->
+
+						<!--<md-divider md-inset></md-divider>-->
+
+					<!--</md-item>-->
+
+				<!--</md-list>-->
+			<!--</div>-->
+
+		</md-content>
+	<div class="md-actions" layout="row">
+		<span flex></span>
+		<md-button class="md-raised md-primary" ng-click="answer('not useful')">Continue Shopping</md-button>
+		<md-button class="md-raised md-primary" ng-click="answer('useful')" style="margin-right:20px;">Checkout</md-button>
+	</div>
+</md-dialog>
