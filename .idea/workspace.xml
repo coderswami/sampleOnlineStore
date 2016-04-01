@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f1fc123-5675-46db-ac39-e2d5154f7916" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/main/cart.tmpl.html" afterPath="$PROJECT_DIR$/client/app/main/cart.tmpl.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/main/main.controller.js" afterPath="$PROJECT_DIR$/client/app/main/main.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/main/main.js" afterPath="$PROJECT_DIR$/client/app/main/main.js" />
     </list>
     <ignored path="sampleOnlineStore.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,8 +59,8 @@
       <file leaf-file-name="main.controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/app/main/main.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+            <state relative-caret-position="-120">
+              <caret line="88" column="33" selection-start-line="88" selection-start-column="33" selection-end-line="88" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -69,8 +69,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/app/main/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="57" column="60" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="60" />
+            <state relative-caret-position="885">
+              <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -160,7 +160,6 @@
         <option value="$PROJECT_DIR$/client/styles/app.css" />
         <option value="$PROJECT_DIR$/client/app/catalog/catalog.js" />
         <option value="$PROJECT_DIR$/client/app/catalog/list/list.html" />
-        <option value="$PROJECT_DIR$/client/app/main/main.js" />
         <option value="$PROJECT_DIR$/client/app/catalog/list/detail/detail.js" />
         <option value="$PROJECT_DIR$/client/app/catalog/list/detail/detail.controller.js" />
         <option value="$PROJECT_DIR$/client/app/app.controller.js" />
@@ -170,6 +169,7 @@
         <option value="$PROJECT_DIR$/client/app/main/main.html" />
         <option value="$PROJECT_DIR$/bower.json" />
         <option value="$PROJECT_DIR$/client/app/main/cart.tmpl.html" />
+        <option value="$PROJECT_DIR$/client/app/main/main.js" />
         <option value="$PROJECT_DIR$/client/app/main/main.controller.js" />
       </list>
     </option>
@@ -412,12 +412,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1459403276326</updated>
-      <workItem from="1459403277487" duration="25465000" />
+      <workItem from="1459403277487" duration="25949000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25465000" />
+    <option name="totallyTimeSpent" value="25949000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="794" extended-state="0" />
@@ -854,16 +854,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/main/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="57" column="60" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="60" />
+        <state relative-caret-position="885">
+          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/main/main.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+        <state relative-caret-position="-120">
+          <caret line="88" column="33" selection-start-line="88" selection-start-column="33" selection-end-line="88" selection-end-column="33" />
           <folding />
         </state>
       </provider>
