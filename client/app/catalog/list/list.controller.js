@@ -25,6 +25,8 @@
 
 		// the array of catalogs
 		vm.products = products;
+		console.log("product is::");
+		console.log(vm.products);
 		// toggle detail view
 		vm.toggleDetails = toggleDetails;
 
