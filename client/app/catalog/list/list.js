@@ -59,7 +59,10 @@
 					templateUrl: 'app/catalog/list/items/items.html',
 					controller: 'CatalogItemsController',
 					controllerAs: 'items'
-				}
+				},
+				 'sidenav@catalog.list':{
+                    templateUrl: 'app/catalog/list/sidenavs/main-sidenav.html'
+                }
 			}
 		};
 
