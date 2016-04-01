@@ -23,9 +23,9 @@
 	 * @param {Service} $http The http service to use
 	 */
 
-	MainController.$inject = ['$mdDialog', '$mdMedia', '$state', '$timeout', '$q', 'catalog', 'categories', 'cart', 'Order'];
+	MainController.$inject = ['$mdDialog', '$cookies', '$mdMedia', '$state', '$timeout', '$q', 'catalog', 'categories', 'cart', 'Order'];
 
-	function MainController($mdDialog, $mdMedia, $state, $timeout, $q, catalog, categories, cart, Order) {
+	function MainController($mdDialog, $cookies, $mdMedia, $state, $timeout, $q, catalog, categories, cart, Order) {
 		var vm = this;
 
 		vm.catalog = catalog;
@@ -86,8 +86,6 @@
 			}
 		}
 
-		generateCartCookie();
-
 		function removeCartCookie() {
 			if($cookies.get('webstore-cart')) {
 				$cookies.remove('webstore-cart');
@@ -96,7 +94,7 @@
 
 		function updateCart(product) {
 			console.log(vm.cart);
-			if(vm.cart == null || vm.cart == undefined) {
+			if(vm.cart.items == null || vm.cart.items == undefined) {
 				generateCartCookie();
 				vm.cart = {
 					'type': 'CART',

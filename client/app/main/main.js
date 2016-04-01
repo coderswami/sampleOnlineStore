@@ -55,6 +55,9 @@
 	resolveCart.$inject = ['Order', '$cookies'];
 
 	function resolveCart(Order, $cookies) {
+		if($cookies.get('webstore-cart')==undefined || $cookies.get('webstore-cart')==null) {
+			$cookies.put('webstore-cart', Date.now());
+		}
 		return Order.getCart({id2: $cookies.get('webstore-cart')}).$promise.then(function(result) {
 			console.log(result);
 			return result;
