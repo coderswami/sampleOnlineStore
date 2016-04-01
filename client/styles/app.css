@@ -218,6 +218,7 @@ md-sidenav[md-component-id="mainMenu"] md-content .md-button {
 #catalog-detail-content md-checkbox[ng-disabled].no-label .md-label {
   display: none; }
 
+
 #catalog-list-content #catalog-items-content md-item.selected {
   background: rgba(0, 188, 212, 0.1); }
 
@@ -227,7 +228,6 @@ md-sidenav[md-component-id="mainMenu"] md-content .md-button {
     padding-left: 64px; }
     #catalog-list-content #catalog-items-content md-item.list-head md-item-content * {
       font-weight: bold; }
-
 
 #order-detail-content .detail-info md-checkbox[ng-disabled] {
   margin: 0; }
