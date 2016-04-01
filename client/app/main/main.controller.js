@@ -86,6 +86,8 @@
 			}
 		}
 
+		generateCartCookie();
+
 		function removeCartCookie() {
 			if($cookies.get('webstore-cart')) {
 				$cookies.remove('webstore-cart');
