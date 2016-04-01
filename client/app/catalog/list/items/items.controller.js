@@ -20,7 +20,9 @@
 
 		// the selected item id
 		var productId = null;
-
+		vm.selection = 1;
+		vm.primaryClass = "md-primary";
+		vm.selectedClass = "md-accent";
 		// check if this item is selected
 		vm.isSelected = isSelected;
 		// switch to the detail state
@@ -44,6 +46,11 @@
 			productId = product.id;
 			$state.go('catalog.list.detail', {'productId': productId});
 		}
+
+		 vm.toggle = function(selection){
+		 	console.log("toggle called");
+            	vm.selection = selection;
+            };
 	}
 
 })();

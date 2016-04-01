@@ -105,6 +105,9 @@ md-input-container.md-input-has-value md-select {
       .section .detail-info span:not(first-child) {
         margin-top: 8px; } }
 
+.product-image {
+  width: 108px !important;
+  height: 200px !important; }
 
 .thing-form {
   margin: 20px 0; }
