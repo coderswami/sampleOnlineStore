@@ -1,30 +1,24 @@
 <section id="productitems-content" layout="column" layout-fill flex>
-<div layout="row" layout-fill flex="50" class="md-padding">
+<div flex-xs flex-gt-xs="50" layout="row" flex="50" flex="50" flex-sm="100" flex-xs="100" class="md-padding">
       <md-card ng-repeat="product in list.products" class="md-padding" ng-click="items.showInDetails(product)">
         <md-card-header>
           <md-card-header-text>
           </md-card-header-text>
         </md-card-header>
-        <div class="md-padding">
         <img ng-src="{{product.imageUrl}}" class="md-card-image product-image" alt="Washed Out" class="md-padding">
-    </div>
-    <div class="md-padding">
-        <md-card-title>
+        <md-card-title class="md-padding">
           <md-card-title-text>
             <span class="md-headline">{{ product.name }}</span>
               <span class="md-headline">{{ product.description }}</span>
           </md-card-title-text>
         </md-card-title>
-    </div>
-    <div class="md-padding">
-        <md-card-content>
+        <md-card-content class="md-paddind">
         <h6 style="color:DarkGray;"><span class="md-subhead"><strike>{{ product.price.currency.code }}  {{ product.price.listPrice }}</strike></span></h6>
          <h3 style="color:red"><span class="md-subhead">{{ product.price.currency.code }} {{ product.price.salesPrice }}</span></h3>
          <h6><span>You Save {{ product.price.currency.code }} {{ product.price.discount }} (Inclusive of all taxes)</span></h6>
          <md-divider></md-divider>
           <p class="md-subhead" ng-repeat="attribute in product.attributes">{{ attribute.name}} : {{ attribute.value }}</p>
         </md-card-content>
-    </div>
         <md-card-content>
         </md-card-content>
       </md-card>

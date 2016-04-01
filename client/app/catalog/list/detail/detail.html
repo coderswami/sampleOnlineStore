@@ -1,11 +1,43 @@
-<md-content class="md-padding" flex id="catalog-detail-content">
-<div flex="50" class="md-padding" layout="column">
-      <md-card class="md-padding">
-       	<span flex>{{::detail.product.name}}</span>
-        <md-card-content>
-        </md-card-content>
-      </md-card>
-    </div>
-  </md-content>
 
+<md-content layout="row" flex>
+<div layout="column" flex="50" layout-padding>
+	<md-button class="md-icon-button" aria-label="More"
+		ng-click="detail.goBack();" flex> <md-icon
+		md-svg-icon="navigation:ic_arrow_back_24px"></md-icon> </md-button>
+	<span style="font-size: 20pt;">{{::detail.product.name}} {{
+		::detail.product.description }}</span> <img
+		ng-src="{{::detail.product.imageUrl}}"
+		class="md-card-image detail-image" alt="Washed Out">
+</div>
+<span flex="20"></span>
+<div layout="column" flex="70" layout-padding>
+	<md-card-content class="md-paddind">
+	<h2>
+		<span class="md-subhead">List Price &nbsp;<strike>{{
+				::detail.product.price.currency.code }} {{
+				::detail.product.price.listPrice }}</strike></span>
+	</h2>
+	<h3>
+		<span>Selling Price {{ ::detail.product.price.currency.code }}
+			{{ ::detail.product.price.salesPrice }} (Inclusive of all taxes)</span>
+	</h3>
+	<p class="md-subhead"
+		ng-repeat="attribute in ::detail.product.attributes">{{
+		attribute.name}} : {{ attribute.value }}
+	</p>
+	</md-card-content>
+
+	<section layout="row" layout-sm="column" layout-align="start start"
+		layout-wrap>
+		<md-button class="md-warn md-raised md-hue-2" style="width:120px;">ADD
+		TO CART</md-button>
+	</section>
+
+	<section section layout="row" layout-sm="column"
+		layout-align="start start" layout-wrap>
+		<md-button class="md-raised md-primary" style="width:120px;">BUY
+		NOW</md-button>
+	</section>
+</div>
+</md-content>
 
