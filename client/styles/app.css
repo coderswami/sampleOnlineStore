@@ -109,6 +109,14 @@ md-input-container.md-input-has-value md-select {
   width: 108px !important;
   height: 200px !important; }
 
+.detail-image {
+  width: 200px !important;
+  height: 350px !important; }
+
+.right {
+  margin-left: 550px;
+  margin-up: 1000px; }
+
 .thing-form {
   margin: 20px 0; }
 

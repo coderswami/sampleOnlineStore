@@ -67,6 +67,8 @@
 		$mdIconProvider.iconSet('content', spritePath + 'svg-sprite-content.svg');
 		$mdIconProvider.iconSet('toggle', spritePath + 'svg-sprite-toggle.svg');
 		$mdIconProvider.iconSet('alert', spritePath + 'svg-sprite-alert.svg');
+		$mdIconProvider.iconSet('navigation', spritePath + 'svg-sprite-navigation.svg');
+
 	};
 
 })();
