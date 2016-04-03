@@ -36,52 +36,42 @@
 	 * @param {$stateProvider} $stateProvider - The state provider to configure
 	 */
 	function configureOrderCreateRoutes($stateProvider) {
-		var  createListState = {
+		var createListState = {
 			name: 'order.list.create',
 			parent: 'order.list',
 			url: '/create',
-			onEnter: onEnterOrderListCreateView
+			resolve: {
+				country: resolveActiveCountry,
+				states: resolveStatesForCountry
+			},
+			views: {
+				'content@order.list': {
+					templateUrl: 'app/orders/create/create.html',
+					controller: 'OrderCreateController',
+					controllerAs: 'create'
+				}
+			}
 		};
 
 		$stateProvider.state(createListState);
 	}
 
-	/**
-	 * Function that executes when entering the order.list.create state.
-	 * Open the create dialog
-	 */
+	resolveActiveCountry.$inject = ['Catalog'];
 
-	onEnterOrderListCreateView.$inject = ['$rootScope', '$state', '$mdDialog'];
+	function resolveActiveCountry(Catalog) {
+		return Catalog.getCountryByCode({controller: 'IN'}).$promise.then(function(result) {
+			console.log(result);
+			return result;
+		});
+	}
 
-	function onEnterOrderListCreateView($rootScope, $state, $mdDialog) {
-		var unregisterListener = $rootScope.$on('$stateChangeStart', onStateChange);
+	resolveStatesForCountry.$inject = ['Catalog', 'country'];
 
-		$mdDialog.show({
-			controller: 'OrderCreateController',
-			controllerAs: 'create',
-			templateUrl: 'app/orders/create/create.html',
-			clickOutsideToClose: false
-		}).then(transitionTo, transitionTo);
-
-		/**
-		 * Function executed when resolving or rejecting the
-		 * dialog promise.
-		 *
-		 * @param {*} answer - The result of the dialog callback
-		 * @returns {promise}
-		 */
-		function transitionTo(answer) {
-			return $state.transitionTo('order.list');
-		}
-
-		/**
-		 * Function executed when changing the state.
-		 * Closes the create dialog
-		 */
-		function onStateChange() {
-			unregisterListener();
-			$mdDialog.hide();
-		}
+	function resolveStatesForCountry(Catalog, country) {
+		return Catalog.getStatesByCountry({controller: country.id}).$promise.then(function(results) {
+			console.log(results);
+			return results;
+		})
 	}
 
 })();

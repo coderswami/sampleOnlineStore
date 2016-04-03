@@ -34,13 +34,16 @@
 		var detailState = {
 			name: 'order.list.detail',
 			parent: 'order.list',
-			onEnter: onEnterOrderListDetail,
+			url: '/:orderId/detail',
+			//onEnter: onEnterOrderListDetail,
 			views: {
-				'detail@order.list': {
+				'content@order.list': {
 					templateUrl: 'app/orders/list/detail/detail.html',
 					controller: 'OrderDetailController',
 					controllerAs: 'detail',
-					resolve: {order: resolveOrderFromArray}
+					resolve: {
+						order: resolveOrder
+					}
 				}
 			}
 		};
@@ -49,25 +52,25 @@
 	}
 
 	// inject onOrderListDetailEnter dependencies
-	onEnterOrderListDetail.$inject = ['$timeout', 'ToggleComponent'];
-
-	/**
-	 * Executed when entering the order.list.detail state. Open the component
-	 * registered with the component id 'order.detailView'.
-	 *
- 	 * @params {$timeout} $timeout - The $timeout service to wait for view initialization
-	 * @params {ToggleComponent} ToggleComponent - The service to toggle the detail view
-	 */
-	function onEnterOrderListDetail($timeout, ToggleComponent) {
-		$timeout(showDetails, 0, false);
-
-		function showDetails() {
-			ToggleComponent('order.detailView').open();
-		}
-	}
+	// onEnterOrderListDetail.$inject = ['$timeout', 'ToggleComponent'];
+    //
+	// /**
+	//  * Executed when entering the order.list.detail state. Open the component
+	//  * registered with the component id 'order.detailView'.
+	//  *
+ 	//  * @params {$timeout} $timeout - The $timeout service to wait for view initialization
+	//  * @params {ToggleComponent} ToggleComponent - The service to toggle the detail view
+	//  */
+	// function onEnterOrderListDetail($timeout, ToggleComponent) {
+	// 	$timeout(showDetails, 0, false);
+    //
+	// 	function showDetails() {
+	// 		ToggleComponent('order.detailView').open();
+	// 	}
+	// }
 
 	// inject resolveOrderFromArray dependencies
-	resolveOrderFromArray.$inject = ['orders', '$stateParams', '_'];
+	resolveOrder.$inject = ['Order', '$stateParams'];
 
 	/**
 	 * Resolve dependencies for the order.detail state
@@ -76,8 +79,11 @@
 	 * @params {Object} $stateParams - The $stateParams to read the order id from
 	 * @returns {Object|null} The order whose value of the _id property equals $stateParams._id
 	 */
-	function resolveOrderFromArray(orders, $stateParams, _) {
-		return _.find(orders, {'_id': $stateParams.id});
+	function resolveOrder(Order, $stateParams) {
+		return Order.get({'id': $stateParams.orderId}).$promise.then(function(results) {
+			console.log(results);
+			return results;
+		});
 	}
 
 })();

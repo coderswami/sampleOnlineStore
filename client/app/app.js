@@ -19,6 +19,7 @@
 			'ngMessages',
 			'ngMaterial',
 			'ui.router',
+			'sampleOnlineStoreApp.toast',
 			'sampleOnlineStoreApp.auth.user',
 			'sampleOnlineStoreApp.listImage',
 			'sampleOnlineStoreApp.lodash',

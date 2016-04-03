@@ -31,7 +31,7 @@
 		vm.goHome = goHome;
 
 		function goHome() {
-			$state.go('main');
+			$state.go('main', {reload: true});
 		}
 
 		vm.sidenavId = 'mainMenu';

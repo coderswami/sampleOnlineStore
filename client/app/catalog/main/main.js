@@ -44,10 +44,10 @@
 
 		$stateProvider.state(mainState);
 
-		mainMenuProvider.addMenuItem({
-			name: 'Catalog',
-			state: mainState.name
-		});
+		// mainMenuProvider.addMenuItem({
+		// 	name: 'Catalog',
+		// 	state: mainState.name
+		// });
 	}
 
 })();

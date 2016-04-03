@@ -68,10 +68,10 @@
 
 		$stateProvider.state(listState);
 
-		mainMenuProvider.addSubMenuItem('catalog.main', {
-			name: 'Catalog List',
-			state: listState.name
-		});
+		// mainMenuProvider.addSubMenuItem('catalog.main', {
+		// 	name: 'Catalog List',
+		// 	state: listState.name
+		// });
 	}
 
 	resolveProducts.$inject = ['Catalog', '$stateParams'];

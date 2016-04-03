@@ -28,6 +28,21 @@ dataSources.getCartOrder = function(cookie,headers,cb){
     });
 };
 
+dataSources.getOrderById = function(orderId,headers,cb){
+	return this.processServiceRequest(function(apiUrl,err){
+		if(!err){
+			var url = apiUrl+'/api/orderHeaders/'+orderId;
+			if(headers && headers !== null){
+				request.get({url:url,headers:headers,json:true},cb);
+			}else{
+				request.get({url:url,json:true},cb);
+			}
+		}else{
+			cb.apply(this,[null,null,{errorCode:err,errorMessage:'Service Not Found'}]);
+		}
+	});
+};
+
 dataSources.createOrder = function(order,headers,cb){
     return this.processServiceRequest(function(apiUrl,err){
         if(!err){

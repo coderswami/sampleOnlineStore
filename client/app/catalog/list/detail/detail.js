@@ -35,7 +35,6 @@
 			name: 'catalog.list.detail',
 			parent: 'catalog.list',
 			url: '/product/:productId',
-			//onEnter: onEnterCatalogListDetail,
 			views: {
 				'content@catalog.list': {
 					templateUrl: 'app/catalog/list/detail/detail.html',

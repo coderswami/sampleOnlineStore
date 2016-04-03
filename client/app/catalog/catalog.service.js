@@ -26,37 +26,21 @@
 		var methods = {
 			'getCountryByCode': {
 				method: 'GET',
-				params: {'id': 'countries'},
-				transformResponse: function (data) {
-					data = angular.fromJson(data);
-					return data;
-				}
+				params: {'id': 'countries'}
 			},
 			'getStatesByCountry': {
 				method: 'GET',
 				params: {'id': 'countries', 'id2': 'states'},
-				isArray: true,
-				transformResponse: function (data) {
-					data = angular.fromJson(data);
-					return data;
-				}
+				isArray: true
 			},
 			'getActiveCatalog': {
 				method: 'GET',
 				params: {'id': 'active'}
-				// transformResponse: function (data) {
-				// 	data = angular.fromJson(data);
-				// 	return data;
-				// }
 			},
 			'getCategoriesByCatalog': {
 				method: 'GET',
 				params: {'controller': 'categories'},
-				isArray: true,
-				transformResponse: function (data) {
-					data = angular.fromJson(data);
-					return data;
-				}
+				isArray: true
 			},
 			'getProductsByCategory': {
 				method: 'GET',
@@ -64,11 +48,7 @@
 					'controller': 'categories',
 					'controller2': 'products'
 				},
-				isArray: true,
-				transformResponse: function (data) {
-					data = angular.fromJson(data);
-					return data;
-				}
+				isArray: true
 			}
 		};
 		// public API

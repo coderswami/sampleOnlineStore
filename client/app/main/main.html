@@ -24,30 +24,17 @@
 			</md-button>
 		</div>
 		<span flex="5"></span>
-		<md-button class="md-fab md-mini shopping-cart" data-bubble="2" aria-label="Cart" ng-click="vm.showCart()">
-			<md-icon md-svg-icon="action:ic_shopping_cart_24px"></md-icon>
-		</md-button>
+		<!--<md-button class="md-fab md-mini shopping-cart" aria-label="Cart" ng-click="vm.showCart()">-->
+			<!--<md-icon md-svg-icon="action:ic_shopping_cart_24px"></md-icon>-->
+		<!--</md-button>-->
+		<!-- Colored mini FAB button -->
+		<div class="material-icons mdl-badge mdl-badge--overlap shopping-cart" ng-click="vm.showCart()" ng-show="vm.cart.items == undefined || vm.cart.items.length == 0">shopping_cart</div>
+		<div class="material-icons mdl-badge mdl-badge--overlap shopping-cart" ng-click="vm.showCart()" ng-hide="vm.cart.items == undefined || vm.cart.items.length == 0" data-badge="{{vm.cart.items.length}}">shopping_cart</div>
 	</div>
 </md-toolbar>
 
-<!--<md-content>-->
-	<!--<md-card>-->
-		<!--<md-card-content>-->
-
-			<!--<h1>a new Online Shopping experience</h1>-->
-
-		<!--</md-card-content>-->
-	<!--</md-card>-->
-<!--</md-content>-->
-
-<!--<md-content>-->
-	<!--<md-card>-->
-		<!--<md-card-content>-->
-
-			<!--<h1>a new Online Shopping experience</h1>-->
-
-		<!--</md-card-content>-->
-	<!--</md-card>-->
-<!--</md-content>-->
-
-<div ui-view layout="column" layout-fill flex></div>
+<div layout="column" layout-align="center center">
+	<div id="left"></div>
+	<div ui-view layout="column" layout-fill flex></div>
+	<div id="right"></div>
+</div>

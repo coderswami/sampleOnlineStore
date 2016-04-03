@@ -33,6 +33,9 @@ router.route('/')
 	.get(controller.index)
 	.post(controller.createOrder);
 
+router.route('/:id')
+	.get(controller.getOrderById);
+
 router.route('/type/cart/:cookie')
 	.get(controller.getCartOrder);
 

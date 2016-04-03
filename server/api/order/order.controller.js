@@ -110,6 +110,33 @@ OrderController.prototype = {
 			console.log(body);
 			res.json(body);
 		});
+	},
+
+	getOrderById : function(req,res){
+		var orderId = req.params.id;
+		async.waterfall([
+			function(callback){
+				OrderAPI.getOrderById(orderId,null,function(err, response, body){
+					console.log(body);
+					callback(null, body);
+				});
+			},
+			function(order, callback){
+				if(order != undefined || order != null) {
+					OrderAPI.getOrderItemsByOrder(order.id, null, function (err, response, body) {
+						console.log(body);
+						order.items = body;
+						callback(null, order);
+					});
+				}else {
+					callback(null, order);
+				}
+			}
+		], function(err, results){
+			if (err) console.error(err.message);
+			console.log(results);
+			res.json(results);
+		});
 	}
 
 };

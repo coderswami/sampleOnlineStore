@@ -37,14 +37,19 @@
 		// The order state configuration
 		var orderState = {
 			name: 'order',
-			url: '/orders',
+			parent: 'main',
+			url: 'orders',
 			abstract: true,
-			templateUrl: 'app/orders/order.html',
-			controller: 'OrderController',
-			controllerAs: 'index'
+			views: {
+				'@main': {
+					templateUrl: 'app/orders/order.html',
+					controller: 'OrderController',
+					controllerAs: 'index'
+				}
+			}
 		};
 
-		$urlRouterProvider.when('/order', '/order/');
+		$urlRouterProvider.when('orders', '/orders/');
 		$stateProvider.state(orderState);
 	}
 

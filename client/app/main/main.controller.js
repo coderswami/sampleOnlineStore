@@ -34,6 +34,7 @@
 
 		vm.showCart = showCart;
 		vm.updateCart = updateCart;
+		vm.createOrder = createOrder;
 
 		vm.listProducts = listProducts;
 
@@ -86,16 +87,9 @@
 			}
 		}
 
-		function removeCartCookie() {
-			if($cookies.get('webstore-cart')) {
-				$cookies.remove('webstore-cart');
-			}
-		}
-
 		function updateCart(product) {
 			console.log(vm.cart);
 			if(vm.cart.items == null || vm.cart.items == undefined) {
-				generateCartCookie();
 				vm.cart = {
 					'type': 'CART',
 					'status': 'IN_PROCESS',
@@ -159,6 +153,10 @@
 			}
 		}
 
+		function createOrder() {
+			$state.go('order.list.create');
+		}
+
 		function showCart(ev) {
 			$mdDialog.show({
 				controller: DialogController,
@@ -166,9 +164,16 @@
 				templateUrl: 'app/main/cart.tmpl.html',
 				targetEvent: ev,
 				clickOutsideToClose:true,
-				fullscreen: $mdMedia('md')
-			}).then(function(answer) {
-				console.log('You said the information was "' + answer + '".');
+				fullscreen: $mdMedia('md'),
+				openFrom: {
+					width: 30,
+					height: 80
+				},
+				closeTo: {
+					left: 1500
+				}
+			}).then(function() {
+				console.log('Redirecting to checkout process');
 			}, function() {
 				console.log('You cancelled the dialog.');
 			});
@@ -182,8 +187,9 @@
 			$scope.cancel = function() {
 				$mdDialog.cancel();
 			};
-			$scope.answer = function(answer) {
-				$mdDialog.hide(answer);
+			$scope.checkout = function() {
+				$scope.hide();
+				$state.go('order.list.create');
 			};
 		}
 

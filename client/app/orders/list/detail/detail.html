@@ -1,61 +1,59 @@
-<md-toolbar class="md-hue-1 md-tall" id="order-detail-toolbar">
-
-	<span layout="row" layout-align="space-between" class="md-toolbar-tools md-toolbar-tools-top">
-		<md-button ng-click="detail.goBack()" aria-label="Close detail view">
-            <md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
-        </md-button>
-		<md-button ng-click="detail.edit()" aria-label="Edit order">
-            <md-icon md-svg-icon="content:ic_create_24px"></md-icon>
-        </md-button>
-	</span>
-
-	<span class="md-toolbar-tools md-toolbar-tools-bottom" layout="column">
-		<h3>{{::detail.order.name}}</h3>
-	</span>
-
-</md-toolbar>
-
 <md-content class="md-padding" flex id="order-detail-content">
+	<md-button class="md-icon-button" aria-label="Home" ng-click="detail.goHome()" flex>
+		<md-icon md-svg-icon="navigation:ic_arrow_back_24px"></md-icon>
+	</md-button>
 
     <section class="section" layout="column">
-
-        <span class="section-title">Order data</span>
-
-		<span layout="row" layout-align="start center" class="detail-info" ng-hide="detail.order.active">
-		    <span flex>This order is not active</span>
-		</span>
-
-		<span layout="row" layout-sm="column" class="detail-info">
-			<span flex="45">Name</span>
-			<span flex>{{::detail.order.name}}</span>
-		</span>
-
-		<span ng-if="detail.order.info" layout="row" layout-sm="column" class="detail-info">
-			<span flex="45">Info</span>
-			<span flex>{{::detail.order.info}}</span>
-		</span>
-
+			<h1 class="md-display-1">Thank you, your order has been placed successfully</h1>
+			<div layout="row" layout-sm="column">
+				<h3 class="md-title" flex="10">Order: </h3>
+				<h3 class="md-title" flex>{{detail.order.id}}</h3>
+			</div>
+			<div layout="row" layout-sm="column">
+				<h3 class="md-title" flex="10">Status: </h3>
+				<h3 class="md-title" flex>{{detail.order.status}}</h3>
+			</div>
     </section>
 
     <section class="section" layout="column">
-
-        <span class="section-title">Record Information</span>
-
-		<span layout="row" layout-sm="column" class="detail-info">
-			<span flex="45">Modified</span>
-			<span flex ng-show="detail.order.modified" class="subtitle">
-				<span am-time-ago="detail.order.modified"></span>
-				<md-tooltip>{{detail.order.modified | date:'dd. MMMM yyyy H:mm'}}</md-tooltip>
-				{{detail.order.modifiedBy && 'by ' + detail.order.modifiedBy}}
-			</span>
-		</span>
-
-		<span layout="row" layout-sm="column" class="detail-info">
-			<span flex="45">Created</span>
-			<span flex ng-show="detail.order.created" class="subtitle">{{detail.order.created | date:'dd. MMMM yyyy H:mm'}}</span>
-		</span>
-
+			<h2 class="md-headline">Order Details</h2>
+			<md-list flex>
+				<md-list-item>
+					<span class="md-offset"></span>
+					<div class="md-list-item-text" layout="column" flex="66">
+						Product
+					</div>
+					<div class="md-list-item-text" layout="column" flex="20">
+						Quantity
+					</div>
+					<div class="md-list-item-text" layout="column" flex>
+						Price
+					</div>
+				</md-list-item>
+				<md-list-item class="md-3-line" ng-repeat="item in detail.order.items">
+					<img ng-src="{{item.product.imageUrl}}" class="md-avatar" alt="{{item.product.name}}" />
+					<div class="md-list-item-text" layout="column" flex="66">
+						<h3>{{ item.product.name }}</h3>
+						<h4>{{ item.product.description }}</h4>
+						<p>{{ item.product.status }}</p>
+					</div>
+					<div class="md-list-item-text" layout="column" flex="20">
+						<p>{{item.quantity}}</p>
+					</div>
+					<div class="md-list-item-text" layout="column" flex>
+						<span class="md-block">{{item.price}}</span>
+					</div>
+				</md-list-item>
+			</md-list>
     </section>
+
+	<section class="section" layout="column">
+		<div layout="row" layout-sm="column">
+			<h3 class="md-title" flex="66">Total:</h3>
+			<span flex="20"></span>
+			<h3 class="md-title" flex>{{detail.order.orderTotal}}</h3>
+		</div>
+	</section>
 
 </md-content>
 

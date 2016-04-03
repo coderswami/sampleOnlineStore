@@ -1,60 +1,155 @@
-<md-dialog aria-label="Create a new order" id="order-create">
-
-    <md-toolbar class="md-accent">
-        <h3 class="md-toolbar-tools">
-            Create a new order
-        </h3>
-    </md-toolbar>
-
-    <md-content>
-        <section class="section slim" layout="column">
-            <p>
-                Create a new order for your application.
-            </p>
-        </section>
-
-        <form name="createForm">
-
-            <section class="section slim" layout="column">
-				<span layout="row" layout-align="start center">
-					<span flex="33">Order is active</span>
-					<md-switch name="active" class="no-label" aria-label="order active" ng-model="create.order.active"></md-switch>
-				</span>
-            </section>
-
-            <section class="section" layout="column">
-
-				<span layout="row" layout-sm="column">
-					<md-input-container flex>
-                        <label>Name</label>
-                        <input name="name" ng-model="create.order.name"
-                               ng-model-options="{updateOn: 'default blur', debounce: {'default': 500, 'blur': 0}}"
-                               required mongoose-error remote-unique="Order">
-                        <div ng-messages="createForm.name.$error">
-                            <div ng-message="required">Name is required</div>
-                            <div ng-message="mongoose">Name already in use</div>
-                            <div ng-message="remote-unique">Name already in use</div>
-                        </div>
-                    </md-input-container>
-				</span>
-
-				<span layout="row" layout-sm="column">
-					<md-input-container flex class="last">
-                        <label>Info</label>
-                        <textarea name="info" ng-model="create.order.info"></textarea>
-                    </md-input-container>
-				</span>
-
-            </section>
-
-        </form>
-
-    </md-content>
-
-    <div class="md-actions" layout="row">
-        <span flex></span>
-        <md-button ng-click="create.close()">Cancel</md-button>
-        <md-button ng-disabled="createForm.$invalid" ng-click="create.create(createForm)" class="md-primary md-raised">Create order</md-button>
-    </div>
-
-</md-dialog>
+<md-content class="md-padding">
+	<md-tabs md-selected="vm.selectedIndex" md-dynamic-height md-border-bottom md-autoselect>
+		<md-tab ng-repeat="step in create.placeOrderSteps"
+						ng-disabled="$index != create.selectedIndex-1"
+						label="{{step.title}}">
+			<div style="padding: 25px;">
+				<!--<div>Tab index: {{$index}}, selected tab: {{create.selectedIndex}}</div>-->
+				<form name="shippingForm">
+				<div ng-if="create.selectedIndex == 1">
+					<md-content>
+						<md-list flex>
+							<md-list-item>
+								<span class="md-offset"></span>
+								<div class="md-list-item-text" layout="column" flex="66">
+									Product
+								</div>
+								<div class="md-list-item-text" layout="column" flex>
+									Quantity
+								</div>
+								<div class="md-list-item-text" layout="column" flex>
+									Price
+								</div>
+							</md-list-item>
+							<md-list-item class="md-3-line" ng-repeat="item in vm.cart.items">
+								<img ng-src="{{item.product.imageUrl}}" class="md-avatar" alt="{{item.product.name}}" />
+								<div class="md-list-item-text" layout="column" flex="66">
+									<h3>{{ item.product.name }}</h3>
+									<h4>{{ item.product.description }}</h4>
+									<p>{{ item.product.status }}</p>
+								</div>
+								<div class="md-list-item-text" layout="column" flex>
+									<md-input-container md-no-float class="md-block">
+										<input ng-model="item.quantity" type="text" placeholder="Quantity">
+									</md-input-container>
+								</div>
+								<div class="md-list-item-text" layout="column" flex>
+									<span class="md-block">{{item.price}}</span>
+								</div>
+							</md-list-item>
+						</md-list>
+					</md-content>
+				</div>
+				<div ng-if="create.selectedIndex == 2">
+					<md-content layout-padding>
+						<div>
+								<md-subheader class="md-primary">Delivery Type</md-subheader>
+								<div layout-gt-sm="row">
+									<md-radio-group ng-model="create.shipment.type" class="md-accent" layout="row">
+										<md-radio-button value="{{type.type}}" ng-repeat="type in create.shipmentTypes">
+											{{type.type}}<span>({{type.details}})</span>
+										</md-radio-button>
+									</md-radio-group>
+								</div>
+								<md-subheader class="md-primary">Delivery Address</md-subheader>
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Name</label>
+									<input name="name" ng-model="create.userAddress.name" required ng-pattern="/^[a-zA-Z ]+$/">
+									<div ng-messages="shippingForm.name.$error" role="alert" multiple>
+										<div ng-message="required" class="my-message">Name is necessary</div>
+										<div ng-message="pattern" class="my-message">Enter a valid name</div>
+									</div>
+								</md-input-container>
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Street Address</label>
+									<textarea name="address" ng-model="create.userAddress.streetAddress" md-maxlength="250" rows="5" md-select-on-focus required></textarea>
+									<div ng-messages="shippingForm.address.$error" role="alert">
+										<div ng-message="required" class="my-message">Street address is necessary</div>
+									</div>
+								</md-input-container>
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Landmark (optional)</label>
+									<input name="landmark" ng-model="create.userAddress.landmark">
+								</md-input-container>
+								<div layout-gt-sm="row">
+									<md-input-container class="md-block" flex-gt-sm>
+										<label>Country</label>
+										<md-select name="country" ng-model="create.userAddress.country" disabled>
+											<md-option value="0" selected>
+												{{create.countries[0].name}}
+											</md-option>
+										</md-select>
+									</md-input-container>
+									<md-input-container class="md-block" flex-gt-sm>
+										<label>State</label>
+										<md-select name="state" ng-model="create.userAddress.state" required>
+											<md-option ng-repeat="state in create.states" value="{{$index}}">
+												{{state.name}}
+											</md-option>
+										</md-select>
+										<div ng-messages="shippingForm.state.$error" role="alert">
+											<div ng-message="required" class="my-message">State is necessary</div>
+										</div>
+									</md-input-container>
+									<md-input-container class="md-block" flex-gt-sm>
+										<label>City</label>
+										<input name="city" ng-model="create.userAddress.city" required ng-pattern="/^[a-zA-Z ]+$/">
+										<div ng-messages="shippingForm.city.$error" role="alert" multiple>
+											<div ng-message="required" class="my-message">City is necessary</div>
+											<div ng-message="pattern" class="my-message">Enter a valid city</div>
+										</div>
+									</md-input-container>
+									<md-input-container class="md-block" flex-gt-sm>
+										<label>Postal Code</label>
+										<input name="pin" ng-model="create.userAddress.pin" placeholder="123456"
+													 required ng-pattern="/^[0-9]{6}$/" md-maxlength="6">
+										<div ng-messages="shippingForm.pin.$error" role="alert" multiple>
+											<div ng-message="required" class="my-message">Postal code is necessary</div>
+											<div ng-message="pattern" class="my-message">Enter a valid postal code</div>
+											<div ng-message="md-maxlength" class="my-message">Postal codes aren't that long</div>
+										</div>
+									</md-input-container>
+								</div>
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Mobile</label>
+									<span>+{{create.countries[create.userAddress.country].isdCode}}</span>
+									<input name="mobile" ng-model="create.userAddress.phone" placeholder="9876543210"
+												 required ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
+									<div ng-messages="shippingForm.mobile.$error" role="alert" multiple>
+										<div ng-message="required" class="my-message">Mobile number is required for seamless delivery</div>
+										<div ng-message="pattern" class="my-message">Enter a valid mobile number</div>
+										<div ng-message="md-maxlength" class="my-message">Mobile numbers aren't that long</div>
+									</div>
+								</md-input-container>
+						</div>
+					</md-content>
+				</div>
+				<div ng-if="create.selectedIndex == 3">
+					<div layout-gt-sm="row">
+						<div layout-gt-sm="column" flex="20">
+							<md-radio-group ng-model="create.payment.index" class="md-primary">
+								<md-radio-button value="{{$index}}" ng-repeat="type in create.paymentTypes">
+									{{type.type}}
+								</md-radio-button>
+							</md-radio-group>
+						</div>
+						<span class="vertical-divider" flex="5"></span>
+						<div layout-gt-sm="column" flex>
+							<p>{{create.paymentTypes[create.payment.index].details}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="md-actions" layout="row" layout-align="center center">
+					<md-button class="md-accent md-raised" ng-click="create.changeStep('previous')" ng-if="create.selectedIndex <= create.placeOrderSteps.length && $index > 0">
+						<md-icon md-svg-icon="navigation:ic_chevron_left_24px"></md-icon>{{create.placeOrderSteps[$index-1].title}}
+					</md-button>
+					<md-button class="md-primary md-raised" ng-click="create.changeStep('next')" ng-disabled="shippingForm.$invalid" ng-if="create.selectedIndex < create.placeOrderSteps.length">
+						{{create.placeOrderSteps[create.selectedIndex].title}}<md-icon md-svg-icon="navigation:ic_chevron_right_24px"></md-icon>
+					</md-button>
+					<md-button class="md-warn md-raised" ng-click="create.placeOrder(shippingForm, vm.cart)" ng-if="create.selectedIndex == create.placeOrderSteps.length">Place Order</md-button>
+				</div>
+				</form>
+			</div>
+		</md-tab>
+	</md-tabs>
+</md-content>

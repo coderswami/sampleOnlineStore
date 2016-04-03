@@ -10,50 +10,33 @@
 		</md-toolbar>
 		<md-content>
 			<md-list flex>
+					<md-list-item>
+						<span class="md-offset"></span>
+						<div class="md-list-item-text" layout="column" flex="66">
+							Product
+						</div>
+						<div class="md-list-item-text" layout="column" flex>
+							Quantity
+						</div>
+					</md-list-item>
 				<md-list-item class="md-3-line" ng-repeat="item in cart.items" ng-click="null">
 					<img ng-src="{{item.product.imageUrl}}" class="md-avatar" alt="{{item.product.name}}" />
-					<div class="md-list-item-text" layout="column">
+					<div class="md-list-item-text" layout="column" flex="66">
 						<h3>{{ item.product.name }}</h3>
 						<h4>{{ item.product.description }}</h4>
 						<p>{{ item.product.status }}</p>
 					</div>
-					<div class="md-list-item-text" layout="column">
-						<md-input-container>
-							<label>Quantity</label>
-							<input ng-model="item.quantity">
+					<div class="md-list-item-text" layout="column" flex>
+						<md-input-container md-no-float class="md-block">
+							<input ng-model="item.quantity" type="text" placeholder="Quantity">
 						</md-input-container>
 					</div>
 				</md-list-item>
 				</md-list>
-			<!--<div class="md-dialog-content">-->
-
-				<!--<md-list layout="column">-->
-					<!--<md-item ng-repeat="item in cart.items">-->
-
-						<!--<md-item-content>-->
-
-							<!--<div class="md-tile-left">-->
-								<!--<list-image string="{{item.product.name}}"></list-image>-->
-							<!--</div>-->
-
-							<!--<div class="md-tile-content" flex="66">-->
-								<!--<h3>{{item.product.name}}</h3>-->
-								<!--<p ng-show="item.product.description">{{item.product.description}}</p>-->
-							<!--</div>-->
-
-						<!--</md-item-content>-->
-
-						<!--<md-divider md-inset></md-divider>-->
-
-					<!--</md-item>-->
-
-				<!--</md-list>-->
-			<!--</div>-->
-
 		</md-content>
 	<div class="md-actions" layout="row">
 		<span flex></span>
-		<md-button class="md-raised md-primary" ng-click="answer('not useful')">Continue Shopping</md-button>
-		<md-button class="md-raised md-primary" ng-click="answer('useful')" style="margin-right:20px;">Checkout</md-button>
+		<md-button class="md-raised md-primary" ng-click="hide()">Continue Shopping</md-button>
+		<md-button class="md-raised md-primary" ng-click="checkout()">Checkout</md-button>
 	</div>
 </md-dialog>

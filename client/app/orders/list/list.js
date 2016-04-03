@@ -18,7 +18,6 @@
 		.module('sampleOnlineStoreApp.order.list', [
 			'ngMaterial',
 			'ui.router',
-			'sampleOnlineStoreApp.socket',
 			'sampleOnlineStoreApp.mainMenu',
 			'sampleOnlineStoreApp.toggleComponent',
 			'sampleOnlineStoreApp.order.list.detail',
@@ -43,9 +42,9 @@
 			name: 'order.list',
 			parent: 'order',
 			url: '/list',
-			resolve: {
-				orders:  resolveOrders
-			},
+			// resolve: {
+			// 	orders:  resolveOrders
+			// },
 			views: {
 
 				// target the unnamed view in the order state
@@ -66,10 +65,10 @@
 
 		$stateProvider.state(listState);
 
-		mainMenuProvider.addSubMenuItem('order.main', {
-			name: 'Orders List',
-			state: listState.name
-		});
+		// mainMenuProvider.addSubMenuItem('order.main', {
+		// 	name: 'Orders List',
+		// 	state: listState.name
+		// });
 	}
 
 	// inject resolveOrders dependencies

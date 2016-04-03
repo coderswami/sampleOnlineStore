@@ -9,7 +9,7 @@
 		.controller('OrderListController', OrderListController);
 
 	// add OrderListController dependencies to inject
-	OrderListController.$inject = ['$scope', 'socket', '$state', 'orders', 'ToggleComponent'];
+	OrderListController.$inject = ['$scope', '$state', 'ToggleComponent'];
 
 	/**
 	 * OrderListController constructor
@@ -20,28 +20,13 @@
 	 * @param {Array} orders - The list of orders resolved for this route
 	 * @param {Service} ToggleComponent - The service for switching the detail view
 	 */
-	function OrderListController($scope, socket, $state, orders, ToggleComponent) {
+	function OrderListController($scope, $state, ToggleComponent) {
 		var vm = this;
 
 		// the array of orders
-		vm.orders = orders;
+		// vm.orders = orders;
 		// toggle detail view
 		vm.toggleDetails = toggleDetails;
-
-		// initialize the controller
-		activate();
-
-		/**
-		 * Register socket updates and unsync on scope $destroy event
-		 */
-		function activate() {
-			socket.syncUpdates('order', vm.orders);
-			$scope.$on('$destroy', unsyncOrderUpdates);
-
-			function unsyncOrderUpdates() {
-				socket.unsyncUpdates('order');
-			}
-		}
 
 		/**
 		 * Toggle the detail view

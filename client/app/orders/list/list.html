@@ -1,18 +1,6 @@
-<section id="order-list-content" layout="row" layout-fill flex>
+<section id="order-list-content" layout="column" layout-fill flex>
 
-    <div ui-view="content" layout="column" flex></div>
-
-    <md-content
-            ui-view="detail"
-            toggle-component
-            id="order-detail-content"
-            md-component-id="order.detailView"
-            layout="column"
-            flex-sm="100"
-            flex-md="50"
-            flex-gt-md="33"
-            class="md-whiteframe-z1">
-    </md-content>
+    <div ui-view="content" flex></div>
 
 </section>
 

@@ -47,9 +47,6 @@
 					controllerAs: 'index'
 				}
 			}
-			// templateUrl: 'app/catalog/catalog.html',
-			// controller: 'CatalogController',
-			// controllerAs: 'index'
 		};
 
 		$urlRouterProvider.when('catalog', 'catalog/');
