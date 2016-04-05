@@ -1,42 +1,33 @@
-<md-content layout="row" flex>
-<div layout="column" flex="50" layout-padding>
-	<md-button class="md-icon-button" aria-label="More"
-		ng-click="detail.goBack();" flex> <md-icon
-		md-svg-icon="navigation:ic_arrow_back_24px"></md-icon> </md-button>
-	<span style="font-size: 20pt;">{{::detail.product.name}} {{
-		::detail.product.description }}</span> <img
-		ng-src="{{::detail.product.imageUrl}}"
-		class="md-card-image detail-image" alt="Washed Out">
-</div>
-<span flex="20"></span>
-<div layout="column" flex="70" layout-padding>
-	<md-card-content class="md-paddind">
-	<h2>
-		<span class="md-subhead">List Price &nbsp;<strike>{{
-				::detail.product.price.currency.code }} {{
-				::detail.product.price.listPrice }}</strike></span>
-	</h2>
-	<h3>
-		<span>Selling Price {{ ::detail.product.price.currency.code }}
-			{{ ::detail.product.price.salesPrice }} (Inclusive of all taxes)</span>
-	</h3>
-	<p class="md-subhead"
-		ng-repeat="attribute in ::detail.product.attributes">{{
-		attribute.name}} : {{ attribute.value }}
-	</p>
+<md-card>
+	<md-card-header>
+		<md-button class="md-fab md-mini md-primary" aria-label="Go Back" ng-click="detail.goBack()">
+			<md-icon md-svg-icon="navigation:ic_arrow_back_24px" style="color: #FFFFFF"></md-icon>
+		</md-button>
+	</md-card-header>
+	<md-card-content layout="row" flex>
+		<span flex="10"></span>
+		<div layout="column" flex="30" layout-padding>
+			<img ng-src="{{detail.product.imageUrl}}" class="md-card-image detail-image" alt="Washed Out">
+		</div>
+		<span flex="10"></span>
+		<div layout="column" flex layout-padding>
+			<span class="md-headline">{{detail.product.name}}</span>
+			<span class="md-subhead">{{detail.product.description}}</span>
+			<span class="md-subhead">
+				<strike>{{detail.product.price.currency.code}} {{detail.product.price.listPrice}}</strike>
+			</span>
+			<span class="md-title">
+				{{detail.product.price.currency.code}} {{detail.product.price.salesPrice}}
+				<span class="md-caption">(Inclusive of all taxes)</span>
+			</span>
+			<span class="md-body-2" ng-repeat="attribute in detail.product.attributes">
+				{{attribute.name}} : {{ attribute.value }}
+			</span>
+			<span layout="row" layout-sm="column" layout-wrap>
+				<md-button class="md-accent md-raised" ng-click="vm.updateCart(detail.product)">ADD TO CART</md-button>
+				<md-button class="md-primary md-raised">BUY NOW</md-button>
+			</span>
+		</div>
 	</md-card-content>
-
-	<section layout="row" layout-sm="column" layout-align="start start"
-		layout-wrap>
-		<md-button class="md-warn md-raised md-hue-2" style="width:120px;" ng-click="vm.updateCart(detail.product)">ADD
-		TO CART</md-button>
-	</section>
-
-	<section section layout="row" layout-sm="column"
-		layout-align="start start" layout-wrap>
-		<md-button class="md-raised md-primary" style="width:120px;">BUY
-		NOW</md-button>
-	</section>
-</div>
-</md-content>
+</md-card>
 

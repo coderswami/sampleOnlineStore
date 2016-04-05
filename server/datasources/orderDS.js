@@ -88,6 +88,21 @@ dataSources.saveOrderItem = function(orderItem,headers,cb){
     });
 };
 
+dataSources.removeOrderItem = function(itemId,headers,cb){
+	return this.processServiceRequest(function(apiUrl,err){
+		if(!err){
+			var url = apiUrl+'/api/orderItems/'+itemId;
+			if(headers && headers !== null){
+				request.del({url:url,headers:headers,json:true},cb);
+			}else{
+				request.del({url:url,json:true},cb);
+			}
+		}else{
+			cb.apply(this,[null,null,{errorCode:err,errorMessage:'Service Not Found'}]);
+		}
+	});
+};
+
 dataSources.createPayment = function(orderId,payment,headers,cb){
     return this.processServiceRequest(function(apiUrl,err){
         if(!err){

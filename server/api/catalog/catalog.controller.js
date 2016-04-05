@@ -104,6 +104,14 @@ CatalogController.prototype = {
 				res.json(body);
 			});
 		});
+	},
+
+	getActiveProductPrice : function(req,res){
+		var productId = req.params.id;
+		CatalogAPI.getActiveProductPriceByProduct(productId,null,function(err, response, body){
+			console.log(body);
+			res.json(body);
+		});
 	}
 
 };

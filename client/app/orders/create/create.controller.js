@@ -129,7 +129,6 @@
 				return;
 			}
 
-			console.log($state.get('main'));
 			console.log(shippingForm);
 			console.log(cart);
 
@@ -161,7 +160,14 @@
 							type: 'success',
 							text: 'Order has been created'
 						});
-						$state.go('order.list.detail', {'orderId': cart.id});
+						var stateOptions = {
+							location: true,
+							inherit: true,
+							relative: $state.$current,
+							notify: true,
+							reload: true
+						};
+						$state.go('order.list.detail', {'orderId': cart.id}, stateOptions);
 					});
 				});
 			});

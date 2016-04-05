@@ -29,35 +29,23 @@
 				params: {'id': 'type', 'controller': 'cart'}
 			},
 			createCart: {
-				method: 'POST',
-				transformResponse: function (data) {
-					data = angular.fromJson(data);
-					return data;
-				}
+				method: 'POST'
 			},
 			saveOrderItem: {
 				method: 'PUT',
-				params: {'id': 'item'},
-				transformResponse: function (data) {
-					data = angular.fromJson(data);
-					return data;
-				}
+				params: {'id': 'item'}
+			},
+			removeOrderItem: {
+				method: 'DELETE',
+				params: {'id': 'item'}
 			},
 			createPayment: {
 				method: 'POST',
-				params: {'controller': 'payment'},
-				transformResponse: function (data) {
-					data = angular.fromJson(data);
-					return data;
-				}
+				params: {'controller': 'payment'}
 			},
 			createShipment: {
 				method: 'POST',
-				params: {'controller': 'shipment'},
-				transformResponse: function (data) {
-					data = angular.fromJson(data);
-					return data;
-				}
+				params: {'controller': 'shipment'}
 			}
 		};
 		// public API

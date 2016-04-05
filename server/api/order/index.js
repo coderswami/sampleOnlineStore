@@ -42,6 +42,9 @@ router.route('/type/cart/:cookie')
 router.route('/item')
 	.put(controller.saveOrderItem);
 
+router.route('/item/:id')
+	.delete(controller.removeOrderItem);
+
 router.route('/:id/payment')
 	.post(controller.createPayment);
 

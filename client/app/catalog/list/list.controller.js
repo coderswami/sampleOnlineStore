@@ -25,29 +25,10 @@
 
 		// the array of catalogs
 		vm.products = products;
-		console.log("product is::");
 		console.log(vm.products);
-		// toggle detail view
+
 		vm.toggleDetails = toggleDetails;
-
-		// // initialize the controller
-		// activate();
-        //
-		// /**
-		//  * Register socket updates and unsync on scope $destroy event
-		//  */
-		// function activate() {
-		// 	socket.syncUpdates('catalog', vm.catalogs);
-		// 	$scope.$on('$destroy', unsyncCatalogUpdates);
-        //
-		// 	function unsyncCatalogUpdates() {
-		// 		socket.unsyncUpdates('catalog');
-		// 	}
-		// }
-
-		/**
-		 * Toggle the detail view
-		 */
+		
 		function toggleDetails() {
 			ToggleComponent('catalog.detailView').toggle();
 		}

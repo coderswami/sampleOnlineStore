@@ -23,10 +23,32 @@
 	 * @param {Service} $http The http service to use
 	 */
 
-	MainController.$inject = ['$mdDialog', '$cookies', '$mdMedia', '$state', '$timeout', '$q', 'catalog', 'categories', 'cart', 'Order'];
+	MainController.$inject = ['$mdDialog', '$cookies', '$mdMedia', '$rootScope', '$state', '$timeout', '$q', 'catalog', 'categories', 'cart', 'Order', 'Catalog'];
 
-	function MainController($mdDialog, $cookies, $mdMedia, $state, $timeout, $q, catalog, categories, cart, Order) {
+	function MainController($mdDialog, $cookies, $mdMedia, $rootScope, $state, $timeout, $q, catalog, categories, cart, Order, Catalog) {
 		var vm = this;
+
+		vm.previousState = null;
+		vm.previousStateParams = null;
+
+		$rootScope.$on('$stateChangeSuccess', function onStateChange(event,toState,toParams,fromState,fromParams) {
+			console.info(fromState);
+			console.info(fromParams);
+			console.info(toState);
+			console.info(toParams);
+			vm.previousState = fromState;
+			vm.previousStateParams = fromParams;
+			console.log(vm.previousState);
+			console.log(vm.previousStateParams);
+		});
+
+		vm.cancelCheckout = cancelCheckout;
+
+		function cancelCheckout() {
+			console.log(vm.previousState);
+			console.log(vm.previousStateParams);
+			$state.go(vm.previousState.name, vm.previousStateParams);
+		}
 
 		vm.catalog = catalog;
 		vm.categories = categories;
@@ -117,17 +139,19 @@
 				console.log(vm.cart);
 				var orderItem = null;
 				if(vm.cart.items.length > 0) {
+					var oldOrderItem = null;
 					for(var i in vm.cart.items) {
 						console.log(vm.cart.items);
 						console.log(product);
 						if(vm.cart.items[i].product.id == product.id) {
-							orderItem = vm.cart.items[i];
-							orderItem.quantity += 1;
-							orderItem.price = orderItem.quantity * product.price.salesPrice;
+							oldOrderItem = vm.cart.items[i];
+							oldOrderItem.quantity += 1;
+							oldOrderItem.price = oldOrderItem.quantity * product.price.salesPrice;
+							orderItem = oldOrderItem;
 							break;
 						}
 					}
-					if(orderItem == null) {
+					if(oldOrderItem == null) {
 						orderItem = {
 							'orderHeader': vm.cart,
 							'product': product,
@@ -136,6 +160,13 @@
 							'status': product.status
 						};
 					}
+					Order.saveOrderItem(orderItem).$promise.then(function(item) {
+						console.log(item);
+						console.log(product);
+						if(oldOrderItem == null) {
+							vm.cart.items.push(item);
+						}
+					});
 				}else {
 					orderItem = {
 						'orderHeader': vm.cart,
@@ -144,12 +175,12 @@
 						'price': product.price.salesPrice,
 						'status': product.status
 					};
+					Order.saveOrderItem(orderItem).$promise.then(function(item) {
+						console.log(item);
+						console.log(product);
+						vm.cart.items.push(item);
+					});
 				}
-				Order.saveOrderItem(orderItem).$promise.then(function(item) {
-					console.log(item);
-					console.log(product);
-					vm.cart.items.push(item);
-				});
 			}
 		}
 
@@ -181,15 +212,52 @@
 
 		function DialogController($scope, $mdDialog) {
 			$scope.cart = vm.cart;
+			$scope.update = function(item) {
+				console.log(item);
+				console.log(vm.cart);
+				if(item.quantity == 0) {
+					$scope.removeItem(item);
+				}else {
+					for(var i in vm.cart.items) {
+						if(vm.cart.items[i].id == item.id) {
+							Catalog.getActiveProductPrice({controller: item.product.id}).$promise.then(function(result) {
+								vm.cart.items[i].quantity = parseInt(vm.cart.items[i].quantity,10);
+								vm.cart.items[i].price = vm.cart.items[i].quantity  * result.salesPrice;
+								console.log(vm.cart.items[i]);
+								Order.saveOrderItem(vm.cart.items[i]).$promise.then(function(item) {
+									console.log(item);
+								});
+							});
+							break;
+						}
+					}
+				}
+			};
+
 			$scope.hide = function() {
 				$mdDialog.hide();
 			};
+
 			$scope.cancel = function() {
 				$mdDialog.cancel();
 			};
+
 			$scope.checkout = function() {
 				$scope.hide();
 				$state.go('order.list.create');
+			};
+
+			$scope.removeItem = function(item) {
+				console.log(item);
+				Order.removeOrderItem({controller: item.id}).$promise.then(function(result) {
+					console.log(result);
+					for(var i in vm.cart.items) {
+						if(vm.cart.items[i].id == item.id) {
+							vm.cart.items.splice(i, 1);
+							break;
+						}
+					}
+				});
 			};
 		}
 

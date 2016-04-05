@@ -10,9 +10,7 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<!--vendor:css-->
-	<link rel="stylesheet" href="bower_components/material-design-lite/material.min.css">
 	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
-	<link rel="stylesheet" href="bower_components/Materialize/bin/materialize.css">
 	<!-- endinject -->
 
 	<!-- app:css -->
@@ -29,7 +27,7 @@
 <main-menu></main-menu>
 
 <!-- Add your site or application content here -->
-<main ng-cloak layout="column" layout-fill ui-view></main>
+<div ng-cloak layout="column" layout-fill ui-view></div>
 
 <script src="socket.io-client/socket.io.js"></script>
 
@@ -46,11 +44,9 @@
 <script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-socket-io/socket.js"></script>
 <script src="bower_components/moment/moment.js"></script>
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/material-design-lite/material.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/angular-material/angular-material.js"></script>
 <script src="bower_components/angular-moment/angular-moment.js"></script>
-<script src="bower_components/Materialize/bin/materialize.js"></script>
 <!-- endinject -->
 
 <!-- vendor js customization -->
@@ -82,22 +78,22 @@
 <script src="app/components/socket/socket.service.js"></script>
 <script src="app/components/resource/resource.service.js"></script>
 <script src="app/components/repeat-input/repeat-input.directive.js"></script>
-<script src="app/components/remote-unique/remote-unique.directive.js"></script>
-<script src="app/components/mongoose-error/mongoose-error.directive.js"></script>
 <script src="app/components/main-menu/main-menu.js"></script>
 <script src="app/components/main-menu/main-menu.service.js"></script>
 <script src="app/components/main-menu/main-menu.directive.js"></script>
 <script src="app/components/main-menu/main-menu.controller.js"></script>
-<script src="app/components/lodash/lodash.service.js"></script>
+<script src="app/components/remote-unique/remote-unique.directive.js"></script>
+<script src="app/components/mongoose-error/mongoose-error.directive.js"></script>
 <script src="app/components/list-image/list-image.directive.js"></script>
+<script src="app/components/lodash/lodash.service.js"></script>
 <script src="app/components/io/io.service.js"></script>
 <script src="app/components/cart/cart.service.js"></script>
 <script src="app/components/cart/cart.directive.js"></script>
 <script src="app/components/auth/user.service.js"></script>
-<script src="app/catalog/list/list.js"></script>
-<script src="app/catalog/list/list.controller.js"></script>
 <script src="app/catalog/main/main.js"></script>
 <script src="app/catalog/main/main.controller.js"></script>
+<script src="app/catalog/list/list.js"></script>
+<script src="app/catalog/list/list.controller.js"></script>
 <script src="app/catalog/create/create.js"></script>
 <script src="app/catalog/create/create.controller.js"></script>
 <script src="app/orders/order.service.js"></script>

@@ -49,6 +49,10 @@
 					'controller2': 'products'
 				},
 				isArray: true
+			},
+			'getActiveProductPrice': {
+				method: 'GET',
+				params: {'id': 'product', 'id2': 'price'}
 			}
 		};
 		// public API

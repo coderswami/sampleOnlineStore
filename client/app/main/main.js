@@ -3,7 +3,7 @@
 
 	// register the route config on the application
 	angular
-		.module('sampleOnlineStoreApp.main', ['ui.router'])
+		.module('sampleOnlineStoreApp.main', ['ui.router', 'ui.bootstrap'])
 		.config(configMainRoute);
 
 	// inject configMainRoute dependencies

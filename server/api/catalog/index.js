@@ -47,5 +47,8 @@ router.route('/:id/categories')
 router.route('/:id/categories/:categoryId/products')
 	.get(controller.getProducts);
 
+router.route('/product/:id/price')
+	.get(controller.getActiveProductPrice);
+
 router.route('/' + controller.paramString)
 	.get(controller.index);

@@ -96,6 +96,14 @@ OrderController.prototype = {
 		});
 	},
 
+	removeOrderItem: function(req,res){
+		var itemId = req.params.id;
+		OrderAPI.removeOrderItem(itemId,null,function(err, response, body){
+			console.log(body);
+			res.ok('Item removed');
+		});
+	},
+
 	createPayment: function(req,res){
 		var orderId = req.params.id;
 		OrderAPI.createPayment(orderId,req.body,null,function(err, response, body){
